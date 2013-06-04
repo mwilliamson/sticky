@@ -75,7 +75,7 @@
       });
     },
     updateWrapperHeight = function(stickyWrapper) {
-      var stickyElement = stickyWrapper.children().first();
+      var stickyElement = $(stickyWrapper.children().get(0));
       var outerHeight = stickyElement.outerHeight();
       if (stickyWrapper.data("height") != outerHeight) {
         stickyWrapper.data('height', outerHeight);
