@@ -71,11 +71,16 @@
       windowHeight = $window.height();
       $(".sticky-wrapper").each(function() {
         var stickyWrapper = $(this);
-        var outerHeight = stickyWrapper.children().first().outerHeight();
-        if (stickyWrapper.data("height") != outerHeight) {
-          $(this).css('height', outerHeight);
-        }
+        updateWrapperHeight(stickyWrapper)
       });
+    },
+    updateWrapperHeight = function(stickyWrapper) {
+      var stickyElement = stickyWrapper.children().first();
+      var outerHeight = stickyElement.outerHeight();
+      if (stickyWrapper.data("height") != outerHeight) {
+        stickyWrapper.data('height', outerHeight);
+        stickyWrapper.css('height', outerHeight);
+      }
     },
     methods = {
       init: function(options) {
@@ -98,9 +103,7 @@
           }
 
           var stickyWrapper = stickyElement.parent();
-          var outerHeight = stickyElement.outerHeight();
-          stickyWrapper.data('height', outerHeight);
-          stickyWrapper.css('height', outerHeight);
+          updateWrapperHeight(stickyWrapper);
           sticked.push({
             topSpacing: o.topSpacing,
             bottomSpacing: o.bottomSpacing,
